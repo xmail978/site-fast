@@ -1,0 +1,36 @@
+## .gitignore只能忽略未被git跟踪（track）的文件
+## 如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。
+
+## 解决方法：先把本地缓存删除（改变成未track状态），然后再提交
+## git rm -r --cached .
+## git status
+## git add .
+## git commit -m '提交信息。。。'
+
+# 不想继续追踪某个文件： git update-index --assume-unchanged your_file_path
+# 再次继续跟踪某个文件： git update-index --no-assume-unchanged your_file_path
+
+# 停止对git已跟踪的文件跟踪，但保留之前该文件的跟踪状态：git rm --cached 文件名
+# 让git忽略已跟踪的文件： git update-index --assume-unchanged 文件名
+
+# 例子：当前文件夹：servlet1
+# 进入springmvc1文件夹：cd ../springmvc1
+# 停止跟踪springmvc1.iml：git rm --cached springmvc1.iml
+# 查看状态：git status
+# 提交信息：git commit -m '删除springmvc配置文件.iml'
+
+
+.idea
+.vscode
+*.iml
+*/*.iml
+target
+*/target
+*.log
+*/*.log
+
+## Git 常用操作：
+# 删除文件：
+# git rm RWAEngine.iml
+# git commit -m '删除无用文件'
+# push
