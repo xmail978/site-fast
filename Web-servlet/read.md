@@ -1,0 +1,9 @@
+- servlet注解版
+    - DButil
+    - BeanUtil
+    - 整合shiro
+    - CRUD用法
+        - 增加(Create)
+		- 更新(Update)
+        - 检索(Retrieve)
+        - 删除(Delete)
