@@ -4,6 +4,6 @@
     - 整合shiro
     - CRUD用法
         - 增加(Create)
-		- 更新(Update)
         - 检索(Retrieve)
+		- 更新(Update)
         - 删除(Delete)
