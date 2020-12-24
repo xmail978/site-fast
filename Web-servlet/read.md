@@ -1,7 +1,7 @@
 - servlet注解版
     - DButil
     - BeanUtil
-    - 整合shiro
+    - 权限 shiro
     - CRUD用法
         - 增加(Create)
         - 检索(Retrieve)
