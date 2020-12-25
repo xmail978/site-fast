@@ -11,15 +11,21 @@ import java.util.Properties;
 /**
  * 连接池（德鲁伊）工具类
  *
- * @Author : WH
- * @Date: 2020/4/19 16:44
- * @Version: v1.0
+ * @author WH
+ * @version v1.0
+ * @date 2013/08/23 20:42
  */
 public class DruidUtils {
     private static DataSource dataSource;
     private static String file = "druid.properties";
-    //使用ThreadLocal存储当前线程中的Connection对象
-    private static ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
+
+    /**
+     * 使用ThreadLocal存储当前线程中的Connection对象
+     *
+     * @author WH
+     * @date 2013/08/23 20:42
+     */
+    private static ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
     static {
         try {
@@ -37,7 +43,7 @@ public class DruidUtils {
      * 获取数据库连接
      *
      * @author WH
-     * @date 2020/7/31 21:14
+     * @date 2013/08/23 20:42
      */
     public static DataSource getDataSource() {
         return dataSource;
@@ -47,7 +53,7 @@ public class DruidUtils {
      * 获取连接
      *
      * @author WH
-     * @date 2020/7/31 21:14
+     * @date 2013/08/23 20:42
      */
     public static Connection getConnection() {
         try {
@@ -61,7 +67,7 @@ public class DruidUtils {
      * 多线程下获取连接
      *
      * @author WH
-     * @date 2020/7/31 21:14
+     * @date 2013/08/23 20:42
      */
     public static Connection getTransConnection() throws SQLException {
         //从当前线程中获取Connection
@@ -79,7 +85,7 @@ public class DruidUtils {
      * 开启事务
      *
      * @author WH
-     * @date 2020/7/31 21:08
+     * @date 2013/08/23 21:08
      */
     public static void startTransaction() {
         try {
@@ -100,7 +106,7 @@ public class DruidUtils {
      * 事务回滚
      *
      * @author WH
-     * @date 2020/7/31 21:08
+     * @date 2013/08/23 21:08
      */
     public static void rollback() {
         try {
@@ -119,7 +125,7 @@ public class DruidUtils {
      * 事务提交
      *
      * @author WH
-     * @date 2020/7/31 21:08
+     * @date 2013/08/23 21:08
      */
     public static void commit() {
         try {
@@ -139,7 +145,7 @@ public class DruidUtils {
      * 注意：并不是真的关闭，而是把连接还给数据库连接池
      *
      * @author WH
-     * @date 2020/7/31 21:08
+     * @date 2013/08/23 21:08
      */
     public static void close() {
         try {
@@ -160,7 +166,7 @@ public class DruidUtils {
      * 注意：并不是真的关闭，而是把连接还给数据库连接池
      *
      * @author WH
-     * @date 2020/7/31 21:08
+     * @date 2013/08/23 21:08
      */
     public static void close(Connection conn) {
         if (conn != null) {

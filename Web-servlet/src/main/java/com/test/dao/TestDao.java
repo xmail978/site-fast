@@ -19,18 +19,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * servlet数据库CRUD
+ * 持久化数据库 CRUD
  *
- * @Author : WH
- * @Date: 2020/4/19 20:24
- * @Description:
- * @Version: v1.0
+ * @author WH
+ * @version 1.0
+ * @date 2013/08/23 20:24
  */
 public class TestDao {
     public static TestDao dao = new TestDao();
     private static Connection conn = null;
 
-    /***********************基本用法*************************************/
+    /*********************JDBC基本用法*********************/
     public int save(User user) {
         int result = 0;
         try {
@@ -172,15 +171,15 @@ public class TestDao {
         return list;
     }
 
-    /***********************DButils用法*************************************/
+    /*********************DButils用法*********************/
+
     QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
 
     /**
      * 数据库字段跟JavaBean对应字段必须一模一样
      *
      * @author: WH
-     * @date: 2020/4/20 10:59
-     * @return:
+     * @date: 2013/08/23 20:36
      */
     public List<User> queryAllUser() {
         List<User> users = null;
@@ -196,13 +195,13 @@ public class TestDao {
      * 查询指定对应字段
      *
      * @author: WH
-     * @date: 2020/4/20 10:59
-     * @return:
+     * @date: 2013/08/23 20:27
      */
     public List<User> getAllUsers() {
         try {
-            Map<String, String> map = new HashMap<>();
-            map.put("user_name", "userName");//指定对应字段
+            Map<String, String> map = new HashMap<>(15);
+            //指定对应字段
+            map.put("user_name", "userName");
             List<User> users = queryRunner.query("select * from t_user", new BeanListHandler<User>(User.class, new BasicRowProcessor(new BeanProcessor(map))));
             return users;
         } catch (SQLException e) {
@@ -213,9 +212,8 @@ public class TestDao {
     /**
      * 数据库字段名称和bean中的字段名称除了下划线和大小写都一样的话, 用它就可以转换
      *
-     * @author: WH
-     * @date: 2020/4/20 10:59
-     * @return:
+     * @author WH
+     * @date 2013/08/23 20:25
      */
     public User getUserById(int id) {
         try {
@@ -227,19 +225,31 @@ public class TestDao {
     }
 
 
-    //带事物操作
+    /**
+     * 带事物保存操作
+     *
+     * @param user 用户
+     * @return int 更新成功数
+     * @author WH
+     * @date 2013/08/23 20:24
+     */
     public int saveByTransfer(User user) throws SQLException {
         Object[] obj = new Object[]{user.getId(), user.getUserName(), user.getPassword(), user.getAge()};
         String sql = "INSERT INTO t_user(id,user_name,password,age) VALUES (?,?,?,?) ";
-        int row = queryRunner.update(DruidUtils.getTransConnection(), sql, obj);
-        return row;
+        return queryRunner.update(DruidUtils.getTransConnection(), sql, obj);
     }
 
-    //带事物操作
+    /**
+     * 带事物更新操作
+     *
+     * @param user 用户
+     * @return int 更新成功数
+     * @author WH
+     * @date 2013/08/23 20:24
+     */
     public int updateByTransfer(User user) throws SQLException {
         Object[] obj = new Object[]{user.getUserName(), user.getPassword(), user.getId()};
         String sql = "UPDATE t_user SET user_name=? , password=? WHERE ID=? ";
-        int row = queryRunner.update(DruidUtils.getTransConnection(), sql, obj);
-        return row;
+        return queryRunner.update(DruidUtils.getTransConnection(), sql, obj);
     }
 }

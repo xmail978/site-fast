@@ -7,19 +7,25 @@ import common.DruidUtils;
 
 import java.sql.SQLException;
 
-
+/**
+ * 业务逻辑层
+ *
+ * @author WH
+ * @version 1.0
+ * @date 2013/08/23 20:30
+ */
 public class TestService {
     TestDao testDao = TestDao.dao;
 
     /**
-     * 在业务层 模拟事物问题
+     * 模拟事物问题
      *
-     * @param user1
-     * @param user2
+     * @param user1 用户1
+     * @param user2 用户2
      * @throws SQLException
      */
     public boolean transfer(User user1, User user2) {
-        boolean flag = false;
+        boolean flag;
         try {
             //开启事务，在业务层处理事务，保证dao层的多个操作在同一个事务中进行
             DruidUtils.startTransaction();
@@ -40,5 +46,15 @@ public class TestService {
             DruidUtils.close();
         }
         return flag;
+    }
+
+    /**
+     * 模拟方法
+     *
+     * @author WH
+     * @date 2013/08/23 20:32
+     */
+    public int add(int a, int b) {
+        return a + b;
     }
 }

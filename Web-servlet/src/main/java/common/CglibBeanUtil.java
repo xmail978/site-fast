@@ -10,9 +10,9 @@ import java.util.Map;
 /**
  * cglib的BeanMap方法实现bean与map互转使用了缓存效率高
  *
- * @Author: WH
- * @Date: 2020/4/19 16:44
- * @Version: v1.0
+ * @author WH
+ * @version v1.0
+ * @date 2013/08/23 20:40
  */
 public class CglibBeanUtil {
     /**
