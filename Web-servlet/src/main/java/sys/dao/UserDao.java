@@ -13,6 +13,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 系统用户久化层
+ *
+ * @author wh
+ * @version 1.0
+ * @date 2013/4/19 20:24
+ */
 public class UserDao {
     public static UserDao dao = new UserDao();
     QueryRunner qr = new QueryRunner(DruidUtils.getDataSource());

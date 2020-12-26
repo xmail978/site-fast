@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @ClassName: LogoutServlet
- * @Author : WH
- * @Date: 2020/4/22 12:47
- * @Description: 注销Servlet
- * @Version: v1.0
+ * 注销Servlet
+ *
+ * @author WH
+ * @version 1.0
+ * @date 2013/4/22 12:47
  */
 @WebServlet(name = "logoutServlet", urlPatterns = "/logout.html")
 public class LogoutServlet extends HttpServlet {

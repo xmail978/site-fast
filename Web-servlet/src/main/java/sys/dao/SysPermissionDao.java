@@ -5,11 +5,11 @@ import java.sql.Connection;
 import java.util.Set;
 
 /**
+ * 权限持久化层
+ *
  * @author wh
- * @ClassName: SysPermissionDao
- * @Author : WH
- * @Date: 2020/4/19 20:24
- * @Version: v1.0
+ * @version v1.0
+ * @date 2013/4/19 20:24
  */
 public class SysPermissionDao {
     private static Connection conn = null;

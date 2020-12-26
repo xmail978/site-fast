@@ -12,11 +12,11 @@ import sys.dao.UserDao;
 import java.util.Set;
 
 /**
- * @author wanghui
- * @className: MyAuthorizingRealm
- * @date: 2020/4/22 13:20
- * @description: 自定义Shiro安全验证
- * @version: v1.0
+ * 自定义安全验证
+ *
+ * @author WH
+ * @version 1.0
+ * @date 2013/4/22 13:20
  */
 public class MyAuthorizingRealm extends AuthorizingRealm {
     @Override

@@ -1,5 +1,12 @@
 package sys.entity;
 
+/**
+ * 系统用户model
+ *
+ * @author wh
+ * @version 1.0
+ * @date 2013/4/19 20:24
+ */
 public class User {
     private int id;
     private String userName;

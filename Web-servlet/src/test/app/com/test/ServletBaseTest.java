@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2013/08/23 10:23
  * @data 1.0
  */
-public class TestData {
+public class ServletBaseTest {
     QueryRunner qr = new QueryRunner(DruidUtils.getDataSource());
     TestDao testDao = TestDao.dao;
     TestService testService = new TestService();

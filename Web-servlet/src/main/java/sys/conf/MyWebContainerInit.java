@@ -14,6 +14,10 @@ import java.util.Set;
 /**
  * 1. 容器加载：相当于web.xml配置文件
  * 2. 必须在classpath下META-INF/services/javax.servlet.ServletContainerInitializer里指定自定义容器实现全路径
+ *
+ * @author WH
+ * @version 1.0
+ * @date 2013/08/23 20:38
  */
 @HandlesTypes(value = {Filter.class})
 public class MyWebContainerInit implements ServletContainerInitializer {

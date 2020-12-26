@@ -15,9 +15,9 @@ import java.io.IOException;
 /**
  * 登录Servlet
  *
- * @Author : WH
- * @Date: 2020/4/22 12:33
- * @Version: v1.0
+ * @author WH
+ * @version 1.0
+ * @date 2013/4/22 12:33
  */
 @WebServlet(name = "loginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     @Override
