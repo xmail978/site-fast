@@ -11,6 +11,6 @@
 </head>
 <body>
     <a href="${pageContext.request.contextPath}/login">登录</a><br/>
-    <a href="${pageContext.request.contextPath}//testServlet">测试</a>
+    <a href="${pageContext.request.contextPath}/testServlet">测试</a>
 </body>
 </html>

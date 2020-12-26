@@ -1,6 +1,6 @@
 package com.test.dao;
 
-import sys.entity.User;
+import com.test.model.TestUser;
 import common.DruidUtils;
 import org.apache.commons.dbutils.BasicRowProcessor;
 import org.apache.commons.dbutils.BeanProcessor;
@@ -30,7 +30,7 @@ public class TestDao {
     private static Connection conn = null;
 
     /*********************JDBC基本用法*********************/
-    public int save(User user) {
+    public int save(TestUser user) {
         int result = 0;
         try {
             conn = DruidUtils.getConnection();
@@ -55,7 +55,7 @@ public class TestDao {
         return result;
     }
 
-    public boolean update(User user) {
+    public boolean update(TestUser user) {
         boolean flag = false;
         try {
             conn = DruidUtils.getConnection();
@@ -109,8 +109,8 @@ public class TestDao {
     }
 
 
-    public User queryById(int id) {
-        User user = new User();
+    public TestUser queryById(int id) {
+        TestUser user = new TestUser();
         try {
             conn = DruidUtils.getConnection();
             String sql = "SELECT * FROM t_user WHERE ID=?";
@@ -137,8 +137,8 @@ public class TestDao {
         return user;
     }
 
-    public List<User> queryAll() {
-        List<User> list = new ArrayList<User>();
+    public List<TestUser> queryAll() {
+        List<TestUser> list = new ArrayList<>();
         try {
             conn = DruidUtils.getConnection();
             // 编写sql语句
@@ -150,10 +150,10 @@ public class TestDao {
             PreparedStatement ps = conn.prepareStatement(sql);
             // 获取执行sql语句后的结果集
             ResultSet rs = ps.executeQuery();
-            User user = null;
+            TestUser user = null;
             // 遍历结果集，添加到list中
             while (rs.next()) {
-                user = new User();
+                user = new TestUser();
                 user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("user_name"));
                 user.setPassword(rs.getString("Password"));
@@ -181,10 +181,10 @@ public class TestDao {
      * @author: WH
      * @date: 2013/08/23 20:36
      */
-    public List<User> queryAllUser() {
-        List<User> users = null;
+    public List<TestUser> queryAllUser() {
+        List<TestUser> users = null;
         try {
-            users = queryRunner.query("select * from t_user", new BeanListHandler<User>(User.class));
+            users = queryRunner.query("select * from t_user", new BeanListHandler<TestUser>(TestUser.class));
             return users;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -197,12 +197,12 @@ public class TestDao {
      * @author: WH
      * @date: 2013/08/23 20:27
      */
-    public List<User> getAllUsers() {
+    public List<TestUser> getAllUsers() {
         try {
             Map<String, String> map = new HashMap<>(15);
             //指定对应字段
             map.put("user_name", "userName");
-            List<User> users = queryRunner.query("select * from t_user", new BeanListHandler<User>(User.class, new BasicRowProcessor(new BeanProcessor(map))));
+            List<TestUser> users = queryRunner.query("select * from t_user", new BeanListHandler<TestUser>(TestUser.class, new BasicRowProcessor(new BeanProcessor(map))));
             return users;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -215,9 +215,9 @@ public class TestDao {
      * @author WH
      * @date 2013/08/23 20:25
      */
-    public User getUserById(int id) {
+    public TestUser getUserById(int id) {
         try {
-            User user = queryRunner.query("select * from t_user where id = ?", new BeanHandler<User>(User.class, new BasicRowProcessor(new GenerousBeanProcessor())), id);
+            TestUser user = queryRunner.query("select * from t_user where id = ?", new BeanHandler<TestUser>(TestUser.class, new BasicRowProcessor(new GenerousBeanProcessor())), id);
             return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -233,7 +233,7 @@ public class TestDao {
      * @author WH
      * @date 2013/08/23 20:24
      */
-    public int saveByTransfer(User user) throws SQLException {
+    public int saveByTransfer(TestUser user) throws SQLException {
         Object[] obj = new Object[]{user.getId(), user.getUserName(), user.getPassword(), user.getAge()};
         String sql = "INSERT INTO t_user(id,user_name,password,age) VALUES (?,?,?,?) ";
         return queryRunner.update(DruidUtils.getTransConnection(), sql, obj);
@@ -247,7 +247,7 @@ public class TestDao {
      * @author WH
      * @date 2013/08/23 20:24
      */
-    public int updateByTransfer(User user) throws SQLException {
+    public int updateByTransfer(TestUser user) throws SQLException {
         Object[] obj = new Object[]{user.getUserName(), user.getPassword(), user.getId()};
         String sql = "UPDATE t_user SET user_name=? , password=? WHERE ID=? ";
         return queryRunner.update(DruidUtils.getTransConnection(), sql, obj);

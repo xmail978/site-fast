@@ -1,9 +1,8 @@
 package com.test.service;
 
 import com.test.dao.TestDao;
-import sys.entity.User;
+import com.test.model.TestUser;
 import common.DruidUtils;
-
 
 import java.sql.SQLException;
 
@@ -24,7 +23,7 @@ public class TestService {
      * @param user2 用户2
      * @throws SQLException
      */
-    public boolean transfer(User user1, User user2) {
+    public boolean transfer(TestUser user1, TestUser user2) {
         boolean flag;
         try {
             //开启事务，在业务层处理事务，保证dao层的多个操作在同一个事务中进行

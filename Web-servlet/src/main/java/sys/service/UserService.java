@@ -1,7 +1,7 @@
 package sys.service;
 
 import sys.dao.UserDao;
-import sys.entity.User;
+import sys.entity.SysUser;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ public class UserService {
     UserDao userDao = new UserDao();
 
 
-    public User UserLogin(String username, String password) {
+    public SysUser UserLogin(String username, String password) {
         return userDao.login(username, password);
     }
 
 
-    public int addUser(User user) {
+    public int addUser(SysUser user) {
         return userDao.addUser(user);
     }
 
@@ -32,22 +32,22 @@ public class UserService {
     }
 
 
-    public int updateUser(User user) {
+    public int updateUser(SysUser user) {
         return userDao.updateUser(user);
     }
 
 
-    public List<User> findAllUser() {
+    public List<SysUser> findAllUser() {
         return userDao.getAllUsers();
     }
 
 
-    public User findUserById(int id) {
+    public SysUser findUserById(int id) {
         return userDao.getUserById(id);
     }
 
 
-    public User findUserByName(String username) {
+    public SysUser findUserByName(String username) {
         return userDao.getUserByName(username);
     }
 }

@@ -6,7 +6,7 @@ import org.apache.commons.dbutils.BeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import sys.entity.User;
+import sys.entity.SysUser;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -27,13 +27,13 @@ public class UserDao {
     /**
      * 添加用户
      *
-     * @param user
+     * @param user 系统用户
      * @return 添加数量
      */
-    public int addUser(User user) {
+    public int addUser(SysUser user) {
         try {
-            return qr.update("insert into t_user(id,user_name,password,age) values (?,?,?,?)",
-                    user.getId(), user.getUserName(), user.getPassword(), user.getAge());
+            return qr.update("insert into sys_user(id,username,password,loginname) values (?,?,?,?)",
+                    user.getId(), user.getUsername(), user.getPassword(), user.getLoginName());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -42,11 +42,11 @@ public class UserDao {
     /**
      * 删除用户
      *
-     * @param id
+     * @param id 主键
      */
     public int delUser(int id) {
         try {
-            return qr.update("delete from t_user where id = ?", id);
+            return qr.update("delete from sys_user where id = ?", id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -55,11 +55,11 @@ public class UserDao {
     /**
      * 修改用户
      *
-     * @param user
+     * @param user 系统用户
      */
-    public int updateUser(User user) {
+    public int updateUser(SysUser user) {
         try {
-            return qr.update("update t_user set user_name = ? where id = ?", user.getUserName(), user.getId());
+            return qr.update("update sys_user set username = ? where id = ?", user.getUsername(), user.getId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -68,14 +68,17 @@ public class UserDao {
     /**
      * 查询所有用户
      */
-    public List<User> getAllUsers() {
-        List<User> users;
+    public List<SysUser> getAllUsers() {
         try {
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(15);
             //指定对应字段
-            map.put("user_name", "userName");
-            users = qr.query("select * from t_user", new BeanListHandler<User>(User.class, new BasicRowProcessor(new BeanProcessor(map))));
-            return users;
+            map.put("ID_CARD", "idCard");
+            map.put("CREATOR_ID", "createId");
+            map.put("CREATE_TIME", "createTime");
+            map.put("UPDATER_ID", "updateId");
+            map.put("UPDATE_TIME", "updateTime");
+            map.put("ORG_ID", "orgId");
+            return qr.query("select * from sys_user", new BeanListHandler<>(SysUser.class, new BasicRowProcessor(new BeanProcessor(map))));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -86,10 +89,9 @@ public class UserDao {
      *
      * @param id：用户的id
      */
-    public User getUserById(int id) {
+    public SysUser getUserById(int id) {
         try {
-            User user = qr.query("select * from t_user where id = ?", new BeanHandler<User>(User.class), id);
-            return user;
+            return qr.query("select * from sys_user where id = ?", new BeanHandler<>(SysUser.class), id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -98,22 +100,21 @@ public class UserDao {
     /**
      * 根据用户名获取用户
      *
-     * @param username
+     * @param username 用户名
      * @return 用户
      */
-    public User getUserByName(String username) {
+    public SysUser getUserByName(String username) {
         try {
-            User user = qr.query("select * from t_user where user_name = ?", new BeanHandler<User>(User.class), username);
-            return user;
+            return qr.query("select * from sys_user where username = ?", new BeanHandler<>(SysUser.class), username);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-    public User login(String username, String password) {
+    public SysUser login(String username, String password) {
         try {
-            return qr.query("select * from t_user where user_name=? and  password =?", new BeanHandler<User>(User.class), username, password);
+            return qr.query("select * from sys_user where username=? and  password =?", new BeanHandler<>(SysUser.class), username, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -122,7 +123,7 @@ public class UserDao {
 
     public String getPassword(String username) {
         try {
-            User user = qr.query("select password from t_user where user_name=? ", new BeanHandler<>(User.class), username);
+            SysUser user = qr.query("select password from sys_user where username=? ", new BeanHandler<>(SysUser.class), username);
             return user.getPassword();
         } catch (Exception e) {
             throw new RuntimeException(e);
