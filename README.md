@@ -6,18 +6,18 @@ git config --global user.email "your email"
 ```
 ### 创建git仓库并提交:
 …or create a new repository on the command line
-echo "# java-dev" >> README.md
+echo "# site-fast" >> README.md
 ```
 git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/xmail978/java-dev.git
+git remote add origin https://github.com/xmail978/site-fast.git
 git push -u origin main
 ```               
 …or push an existing repository from the command line
 ```
-git remote add origin https://github.com/xmail978/java-dev.git
+git remote add origin https://github.com/xmail978/site-fast.git
 git branch -M main
 git push -u origin main
 ```
