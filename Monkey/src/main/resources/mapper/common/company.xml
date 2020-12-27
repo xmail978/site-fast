@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sccba.rong.company.dao.CompanyDao">
+
+	<!-- 查询企业类型列表 -->
+	<select id="companyType" resultType="java.util.Map" >
+		SELECT
+			TYPE_ID ,TYPE_NAME , SORT
+		FROM
+			RE_COMPANY_TYPE
+	</select>
+	<!-- 查询企业状态列表 -->
+	<select id="companyState" resultType="java.util.Map" >
+		SELECT
+			STATE_ID , STATE_NAME , SORT
+		FROM
+			RE_COMPANY_STATE
+	</select>
+
+	<!-- 查询行业类型列表 -->
+	<select id="industryType" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT
+			ID , TYPE_NAME , TYPE_CODE , PARENT_ID , LEVEL , SORT
+		FROM
+			RE_INDUSTRY_TYPE
+		WHERE
+			PARENT_ID = #{parantId}
+			AND LEVEL = #{level}
+		ORDER BY SORT
+	</select>
+
+</mapper>

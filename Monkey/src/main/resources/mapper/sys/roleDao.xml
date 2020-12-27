@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sccba.system.login.dao.RoleDao">
+	<resultMap type="org.sccba.system.login.model.LoginRole" id="roleMap">
+		<result property="roleId" column="ROLE_ID" javaType="String"/>
+		<result property="roleName" column="ROLE_NAME"/>
+		<result property="state" column="STATE"/>
+		<result property="remark" column="REMARK"/>
+		<result property="corporation" column="CORPORATION"/>
+		<result property="createId" column="CREATE_ID"/>
+		<result property="createTime" column="CREATE_TIME"/>
+		<result property="updaterId" column="UPDATER_ID"/>
+		<result property="updateTime" column="UPDATE_TIME"/>
+		<result property="special" column="SPECIAL"/>
+	</resultMap>
+	<!-- 根据登录名查询角色 -->
+	<select id="getRoleByUserName" parameterType="java.util.Map" resultMap="roleMap">
+		SELECT
+			c.ROLE_ID
+			,c.ROLE_NAME
+			,c.STATE
+			,c.REMARK
+			,c.CORPORATION
+			,c.CREATE_ID
+			,c.CREATE_TIME
+			,c.UPDATER_ID
+			,c.UPDATE_TIME
+			,c.SPECIAL
+		FROM sys_user a,sys_user_role b ,sys_role c
+		WHERE a.loginname = #{loginName,jdbcType=VARCHAR}
+			and a.id = b.USER_ID
+			and b.ROLE_ID=c.ROLE_ID
+			AND c.STATE = 1 <!--启用-->
+	</select>
+
+</mapper>

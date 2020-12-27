@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sccba.rong.search.dao.SearchDao">
+
+	<!-- 查询企业列表 -->
+	<select id="searchCompany" resultType="java.util.Map" parameterType="java.util.Map">
+		select
+			a.*
+			,case
+				when a.REG_TIME &lt; b. UPDATE_TIME then b.UPDATE_TIME
+				else a.REG_TIME
+			end NEWEST_TIME
+		from RE_COMPANY a
+		left join RE_COMPANY_HISTORYINFO b on a.ID = b.COMPANY_ID
+
+		<where>
+			<if test="companyName != null and companyName != ''">
+				AND a.COMPANY_NAME like '%'||#{companyName,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="province != null and province != ''">
+				AND a.REG_PROVINCE  = #{province,jdbcType=VARCHAR}
+			</if>
+			<if test="city != null and city != ''">
+				AND a.REG_CITY =  #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="area != null and area != ''">
+				AND a.REG_AREA =  #{area,jdbcType=VARCHAR}
+			</if>
+			<if test="companyState != null and companyState != ''">
+				AND a.COMPANY_STATE =  #{companyState,jdbcType=VARCHAR}
+			</if>
+			<if test="companyType != null and companyType != ''">
+				AND a.COMPANY_TYPE =  #{companyType,jdbcType=VARCHAR}
+			</if>
+			<if test="industry != null and industry != ''">
+				AND a.INDUSTRY_TYPE =  #{industry,jdbcType=VARCHAR}
+			</if>
+			<if test="id != null and id != ''">
+				AND a.ID =  #{id,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+</mapper>

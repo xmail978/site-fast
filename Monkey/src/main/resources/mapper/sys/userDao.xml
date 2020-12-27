@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sccba.system.login.dao.UserDao">
+	<resultMap type="org.sccba.system.login.model.LoginUser" id="userMap">
+		<result property="id" column="ID"  javaType="String" />
+		<result property="userName" column="USERNAME"  />
+		<result property="loginName" column="LOGINNAME"  />
+		<result property="password" 		column="PASSWORD"  />
+		<result property="sex" 	column="SEX"  />
+		<result property="idCard" 		column="ID_CARD" />
+		<result property="phone" column="PHONE"  />
+		<result property="mobile" column="MOBILE"  />
+		<result property="email" 		column="EMAIL"  />
+		<result property="creatorId" 	column="CREATOR_ID"  />
+		<result property="createTime" 		column="CREATE_TIME" />
+		<result property="updaterId" column="UPDATER_ID"/>
+		<result property="updateTime" column="UPDATE_TIME"  />
+		<result property="state" column="STATE"  />
+		<result property="remark" 		column="REMARK"  />
+		<result property="orgId" 	column="ORG_ID"  />
+		<result property="corporation" 		column="CORPORATION" />
+	</resultMap>
+
+	<!-- 根据登录名查询用户密码 -->
+	<select id="getPassword" resultType="String" parameterType="java.util.Map">
+		SELECT
+			password
+		FROM sys_user
+		WHERE  LOGINNAME = #{loginName,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据登录名查询用户密码 -->
+	<select id="getUserByName" parameterType="java.util.Map" resultMap="userMap" >
+		SELECT
+			*
+		FROM sys_user
+		WHERE  LOGINNAME = #{loginName,jdbcType=VARCHAR}
+	</select>
+</mapper>

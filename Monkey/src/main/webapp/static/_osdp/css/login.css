@@ -1,0 +1,64 @@
+body{
+	width: 100%;
+	height: 100%;
+	background-image: url(../images/bg2.png);
+	background-size: 100% 100%;
+}
+.warp{
+	width:366px ;
+	height: 362px;
+	margin: 0 auto;
+	margin-top:173px ;
+}
+.warp img{
+	display: block;
+	width:99% ;
+	height:42px ;
+}
+.warp .login{
+	margin-top: 49px;
+	width: 366px;
+	height: 271px;
+	background-color:#07446f ;
+	box-shadow:13px 0px 25px #095b94;
+}
+.warp .login p{
+	font-size:20px ;
+	color: #fff;
+	line-height: 60px;
+	margin-left:48px ;	
+}
+.warp .list-item{
+	width: 271px;
+	height: 40px;
+	margin: 0 auto;
+	background-color: #fff;
+	margin-bottom: 24px;
+}
+
+.warp .list-item span img{
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin: 0 9px;
+	vertical-align: middle;	
+}
+.warp .list-item input{
+	outline:none;
+	border: 0;	
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	color: #989898;
+}
+.warp .login button{
+	display: block;
+	width: 272px;
+	height: 40px;
+	text-align: center;
+	font-size: 18px;
+	color: #07446F;
+	background-color: #f8b62d;
+	border-radius: 5px;
+	margin: 0 auto;
+}

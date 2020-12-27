@@ -1,0 +1,10 @@
+#### springMVC纯净版
+##### 功能
+- 前端页面交互
+- tomcat7嵌入式启动(maven插件)
+- jetty9嵌入式启动(maven插件)
+- jetty8嵌入式启动(api)
+- jetty9嵌入式启动(api)
+- jdbcTemplate
+- 日志：log4j2
+- FastJson

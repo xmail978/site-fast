@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sccba.rong.area.dao.AreaDao">
+
+	<!-- 查询省份列表 -->
+	<!--<select id="DetailDao" parameterType="org.sccba.system.login.model.LoginUser" resultType="java.util.Map" >
+		SELECT
+			A. ID ,A. PROVINCE_NAME ,A. PROVINCE_CODE
+		FROM
+			RE_PROVINCE A
+		ORDER BY
+			A. SORT
+	</select>-->
+
+</mapper>

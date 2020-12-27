@@ -1,0 +1,109 @@
+/*在营企业*/
+.tag.num-opening {
+    margin-left: 12px;
+    color: #34cc33;
+    border-color: #34cc33;
+    padding: 0 6px;
+    font-size: 12px;
+    line-height: 18px;
+    display: inline-block;
+    border: 1px solid #f3f3f3;
+    border-radius: 2px;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+}
+/*在营结束*/
+
+/*高新企业样式*/
+.tag {
+    padding: 0 6px;
+    font-size: 12px;
+    line-height: 18px;
+}
+.tag-mr {
+    margin-right: 8px;
+}
+
+.tag-new-category {
+    color: #0084ff;
+    background-color: rgba(0, 132, 255, 0.1);
+    border-color: #f3f3f3;
+
+    border: none;
+}
+.tag {
+    display: inline-block;
+
+    border-radius: 2px;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+}
+/*高新企业样式结束*/
+
+/*注销样式*/
+.tag.num-cancel {
+    margin-left: 12px;
+    color: #ff3b30;
+    border-color: #ff3b30;
+    padding: 0 6px;
+    font-size: 12px;
+    line-height: 18px;
+    display: inline-block;
+    border: 1px solid #f3f3f3;
+    border-radius: 2px;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+}
+/*注销样式结束*/
+
+/*我要认证*/
+.certification-type {
+    display: inline-block;
+    height: 36px;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+.btn-m {
+    width: 88px;
+    height: 36px;
+    margin-top: -1px;
+    padding-top: 8px;
+    font-size: 14px;
+    background-color: #FFAE25;
+}
+
+.-ms {
+    padding: 1px 8px;
+    font-size: 16px;
+}
+
+.btn-claim {
+    color: #fff;
+    background-color: #ffaf25;
+    border-color: #ffaf25;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*我要认证结束*/
+
+/*监控*/
+.btn-primary {
+    color: #fff;
+    background-color: #0084ff;
+    border-color: #0084ff;
+}
+
+
+
+.span-font{
+    font-size: 17px;
+}
+
+

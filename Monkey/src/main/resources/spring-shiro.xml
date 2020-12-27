@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+    <description>Shiro Configuration</description>
+
+    <!-- Shiro权限过滤过滤器定义 -->
+    <bean name="shiroFilterChainDefinitions" class="java.lang.String">
+        <constructor-arg>
+            <value>
+                /loginUser/login = anon
+                /loginUser/logout = anon
+                /static/** = anon <!--静态资源-->
+                /** = authc
+            </value>
+        </constructor-arg>
+    </bean>
+
+    <!--密码加密-->
+    <bean id="passwordEncoder" class="org.sccba.system.password.PasswordEncoderMd5"/>
+
+    <!-- 安全认证过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/loginUser/login"/>
+        <property name="successUrl" value="/loginUser/index"/>
+        <property name="filterChainDefinitions">
+            <ref bean="shiroFilterChainDefinitions"/>
+        </property>
+    </bean>
+
+
+    <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的MyRealm.java -->
+    <bean id="myRealm" class="org.sccba.system.security.SystemAuthorizingRealm"/>
+
+    <!-- 定义Shiro安全管理配置 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+    </bean>
+
+</beans>

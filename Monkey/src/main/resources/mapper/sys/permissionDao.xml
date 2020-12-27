@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sccba.system.login.dao.PermissionDao">
+	<resultMap type="org.sccba.system.login.model.LoginPermission" id="permissionMap">
+		<result property="id" 			column="ID" javaType="String"/>
+		<result property="name" 		column="NAME"/>
+		<result property="code" 		column="CODE"/>
+		<result property="parentId" 	column="PARENT_ID"/>
+		<result property="url" 			column="URL"/>
+		<result property="iconCls" 		column="ICON_CLS"/>
+		<result property="type" 		column="TYPE"/>
+		<!--<result property="page" 		column="PAGE"/>-->
+		<result property="creatorId" 	column="CREATOR_ID"/>
+		<result property="createTime" 	column="CREATE_TIME"/>
+		<result property="updaterId" 	column="UPDATER_ID"/>
+		<result property="updateTime" 	column="UPDATE_TIME"/>
+		<result property="state" 		column="STATE"/>
+		<result property="remark" 		column="REMARK"/>
+	</resultMap>
+	<!-- 根据角色查询权限 -->
+	<select id="getPermissionByRole" parameterType="java.util.Map" resultMap="permissionMap">
+		SELECT
+			A.ID ,A.NAME ,A.CODE ,A.PARENT_ID ,A.URL ,A.ICON_CLS ,A.TYPE <!-- ,A.PAGE--> ,A.
+			CREATOR_ID ,A.CREATE_TIME ,A.UPDATER_ID ,A.UPDATE_TIME ,A.STATE ,A.REMARK
+		FROM
+			SYS_PERMISSION A JOIN SYS_ROLE_PERMISSION B
+				ON A.ID = B.PERMISSION_ID
+			JOIN SYS_ROLE C ON C.ROLE_ID = B.ROLE_ID
+				AND C.ROLE_ID = #{roleId,jdbcType=VARCHAR}
+				AND A.STATE = 1 <!--启用-->
+	</select>
+
+</mapper>
