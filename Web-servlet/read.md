@@ -1,3 +1,4 @@
+最简单的MVC架构适合快速灵活的小型项目
 - servlet注解版
     - DButil
     - BeanUtil
